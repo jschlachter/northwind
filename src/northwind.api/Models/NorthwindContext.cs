@@ -26,12 +26,13 @@ namespace Northwind.Api.Models
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
             modelBuilder.ApplyConfiguration(new RegionConfiguration());
             modelBuilder.ApplyConfiguration(new SupplierConfiguration());
             modelBuilder.ApplyConfiguration(new ShipperConfiguration());
 
             //
-            // Add filter for discontinued products
+            // Global filter for discontinued products
             modelBuilder.Entity<Product>().HasQueryFilter(p => !p.Discontinued);
         }
     }
