@@ -33,7 +33,7 @@ namespace Northwind.Api.Models
 
             //
             // Global filter for discontinued products
-            modelBuilder.Entity<Product>().HasQueryFilter(p => !p.Discontinued);
+            // modelBuilder.Entity<Product>().HasQueryFilter(p => !p.Discontinued);
         }
     }
 }

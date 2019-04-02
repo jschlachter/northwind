@@ -10,29 +10,34 @@ namespace Northwind.Api.Data
     public class DefaultEntityRepository<TEntity, TId>:IEntityRepository<TEntity, TId>
         where TEntity : class, IIdentifiable<TId>
     {
+        private readonly ILogger _logger;
         private readonly DbContext _context;
         private readonly DbSet<TEntity> _dbSet;
 
-        public DefaultEntityRepository(ILogger<DefaultEntityRepository<TEntity, TId>> logger)
+        public DefaultEntityRepository(ILogger<DefaultEntityRepository<TEntity, TId>> logger, DbContext dbContext)
         {
-            Logger = logger;
+            _logger = logger;
+            _context = dbContext;
+            _dbSet = dbContext.Set<TEntity>();
+
         }
 
-        public ILogger Logger { get; }
-
-        public Task<TEntity> CreateAsync(TEntity entity)
+        public async Task<TEntity> CreateAsync(TEntity entity)
         {
-            throw new System.NotImplementedException();
+            _dbSet.Add(entity);
+
+            await _context.SaveChangesAsync();
+            return entity;
         }
 
         public IQueryable<TEntity> Get()
         {
-            throw new System.NotImplementedException();
+            return _dbSet;
         }
 
-        public Task<TEntity> GetAsync(TId id)
+        public async Task<TEntity> GetAsync(TId id)
         {
-            throw new System.NotImplementedException();
+            return await Get().SingleOrDefaultAsync(e=>e.Id.Equals(id));
         }
 
         public async Task<int> CountAsync(IQueryable<TEntity> entities)
@@ -54,9 +59,24 @@ namespace Northwind.Api.Data
             return true;
         }
 
-        public Task<TEntity> UpdateAsync(TId id, TEntity entity)
+        public async Task<TEntity> UpdateAsync(TId id, TEntity entity)
         {
-            throw new System.NotImplementedException();
+            var oldEntity = await GetAsync(id);
+
+            if( oldEntity == null) {
+                return null;
+            }
+
+            var modifiedProperties = _context.Entry(entity).Properties.Where(p => p.IsModified);
+            foreach(var modifiedProperty in modifiedProperties)
+            {
+                var propertyName = modifiedProperty.Metadata.PropertyInfo.Name;
+                var property = _context.Entry(oldEntity).Property(propertyName);
+
+                property.Metadata.PropertyInfo.SetValue(oldEntity, modifiedProperty.CurrentValue);
+            }
+            await _context.SaveChangesAsync();
+            return oldEntity;
         }
     }
 }

@@ -2,7 +2,7 @@ using System;
 
 namespace Northwind.Api.Models
 {
-    public class Product
+    public class Product:IIdentifiable<int>
     {
         public int Id { get; set; }
         public string Name { get; set; }
