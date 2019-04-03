@@ -22,7 +22,7 @@ namespace Northwind.Api.Data
 
         }
 
-        public async Task<TEntity> CreateAsync(TEntity entity)
+        public virtual async Task<TEntity> CreateAsync(TEntity entity)
         {
             _dbSet.Add(entity);
 
@@ -30,24 +30,24 @@ namespace Northwind.Api.Data
             return entity;
         }
 
-        public IQueryable<TEntity> Get()
+        public virtual IQueryable<TEntity> Get()
         {
             return _dbSet;
         }
 
-        public async Task<TEntity> GetAsync(TId id)
+        public virtual async Task<TEntity> GetAsync(TId id)
         {
             return await Get().SingleOrDefaultAsync(e=>e.Id.Equals(id));
         }
 
-        public async Task<int> CountAsync(IQueryable<TEntity> entities)
+        public virtual async Task<int> CountAsync(IQueryable<TEntity> entities)
         {
             return (entities is IAsyncEnumerable<TEntity>)
                  ? await entities.CountAsync()
                  : entities.Count();
         }
 
-        public async Task<bool> DeleteAsync(TId id)
+        public virtual async Task<bool> DeleteAsync(TId id)
         {
             var entity = await GetAsync(id);
 
@@ -59,7 +59,7 @@ namespace Northwind.Api.Data
             return true;
         }
 
-        public async Task<TEntity> UpdateAsync(TId id, TEntity entity)
+        public virtual async Task<TEntity> UpdateAsync(TId id, TEntity entity)
         {
             var oldEntity = await GetAsync(id);
 
