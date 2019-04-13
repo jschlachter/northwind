@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Northwind.Api.Data;
 using Northwind.Api.Models;
 
 namespace Northwind.Api
@@ -28,11 +29,15 @@ namespace Northwind.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddDbContext<NorthwindContext>(options => 
+            services.AddDbContext<NorthwindContext>(options =>
             {
                 var connectionString = Configuration.GetConnectionString("NorthwindContext");
                 options.UseSqlServer(connectionString);
             });
+
+            services.AddScoped<IDbContextResolver, DbContextResolver<NorthwindContext>>();
+            services.AddScoped(typeof(IEntityRepository<>), typeof(DefaultEntityRepository<>));
+            services.AddScoped<IOrderRepository, OrderRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

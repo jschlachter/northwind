@@ -27,6 +27,7 @@ namespace Northwind.Api.Db.Configuration
             //
             // Relationships
             builder.HasOne(t => t.Shipper).WithMany().HasForeignKey("ShipVia");
+            builder.HasMany(t => t.Details).WithOne().HasForeignKey("OrderID");
 
             builder.OwnsOne(order => order.ShippingAddress, oa => {
                 //

@@ -4,13 +4,16 @@ using Northwind.Api.Models;
 
 namespace Northwind.Api.Data
 {
-    public interface IEntityRepository<TEntity, TId>
-    where TEntity : class, IIdentifiable<TId>
+    public interface IEntityRepository<TEntity>
+    : IEntityRepository<TEntity, int>, IEntityReadRepository<TEntity, int>
+    where TEntity: class, IIdentifiable<int>
+    { }
+
+    public interface IEntityRepository<TEntity, in TId>
+    : IEntityReadRepository<TEntity, TId>
+    where TEntity: class, IIdentifiable<TId>
     {
         Task<TEntity> CreateAsync(TEntity entity);
-        IQueryable<TEntity> Get();
-        Task<TEntity> GetAsync(TId id);
-        Task<int> CountAsync(IQueryable<TEntity> entities);
         Task<bool> DeleteAsync(TId id);
         Task<TEntity> UpdateAsync(TId id, TEntity entity);
     }

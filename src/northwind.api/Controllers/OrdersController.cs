@@ -10,7 +10,7 @@ namespace Northwind.Api.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
-        public OrdersController(ILogger logger)
+        public OrdersController(ILogger<OrdersController> logger)
         {
             Logger = logger;
         }

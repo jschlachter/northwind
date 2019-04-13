@@ -7,18 +7,32 @@ using Northwind.Api.Models;
 
 namespace Northwind.Api.Data
 {
-    public class DefaultEntityRepository<TEntity, TId>:IEntityRepository<TEntity, TId>
-        where TEntity : class, IIdentifiable<TId>
+    public class DefaultEntityRepository<TEntity>
+        : DefaultEntityRepository<TEntity, int>
+        where TEntity : class, IIdentifiable<int>
+    {
+        public DefaultEntityRepository(
+            ILogger<DefaultEntityRepository<TEntity, int>> logger,
+            IDbContextResolver dbContextResolver)
+            : base(logger, dbContextResolver)
+        {
+        }
+    }
+
+    public class DefaultEntityRepository<TEntity, TId>
+        :IEntityRepository<TEntity, TId> where TEntity : class, IIdentifiable<TId>
     {
         private readonly ILogger _logger;
         private readonly DbContext _context;
         private readonly DbSet<TEntity> _dbSet;
 
-        public DefaultEntityRepository(ILogger<DefaultEntityRepository<TEntity, TId>> logger, DbContext dbContext)
+        public DefaultEntityRepository(
+            ILogger<DefaultEntityRepository<TEntity, TId>> logger,
+            IDbContextResolver dbContextResolver)
         {
             _logger = logger;
-            _context = dbContext;
-            _dbSet = dbContext.Set<TEntity>();
+            _context = dbContextResolver.GetContext();
+            _dbSet = dbContextResolver.GetDbSet<TEntity>();
 
         }
 

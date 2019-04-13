@@ -5,7 +5,7 @@ namespace Northwind.Api.Models
         string StringId { get; set; }
     }
 
-    public interface IIdentifiable<T>
+    public interface IIdentifiable<T> : IIdentifiable
     {
         T Id { get; set; }
     }

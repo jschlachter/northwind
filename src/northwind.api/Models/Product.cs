@@ -2,9 +2,8 @@ using System;
 
 namespace Northwind.Api.Models
 {
-    public class Product:IIdentifiable<int>
+    public class Product:Identifiable
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public Supplier Supplier { get; set; }
         public Category Category { get; set; }

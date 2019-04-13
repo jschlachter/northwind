@@ -28,7 +28,8 @@ namespace Northwind.Api.Test.Data
         [Trait("suite", "integration")]
         public async Task Should_Update_Product()
         {
-            var repository = new DefaultEntityRepository<Product, int>(_logger, _fixture.DbContext);
+            var resolver = new DbContextResolver<NorthwindContext>(_fixture.DbContext);
+            var repository = new DefaultEntityRepository<Product, int>(_logger, resolver);
             var product = repository.Get().IgnoreQueryFilters().SingleOrDefault(p => p.Id.Equals(25));
 
             Assert.NotNull(product);

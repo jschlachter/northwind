@@ -34,7 +34,7 @@ namespace Northwind.Api.Db.Configuration
             //
             // Relationships
 
-            builder.HasOne(t => t.Order).WithMany().HasForeignKey("OrderID");
+            //builder.HasOne(t => t.Order).WithMany(t => t.Details).HasForeignKey("OrderID");
             builder.HasOne(t => t.Product).WithMany().HasForeignKey("ProductID");
 
         }
