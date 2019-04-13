@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Northwind.Api.Models;
+using Northwind.Core.Entities;
 
 namespace Northwind.Api.Controllers
 {

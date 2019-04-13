@@ -1,11 +1,10 @@
 using System.Linq;
 using System.Threading.Tasks;
-using Bogus;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using Northwind.Api.Data;
-using Northwind.Api.Models;
+using Northwind.Core.Entities;
+using Northwind.Infrastructure.Data;
 using Xunit;
 using Xunit.Abstractions;
 

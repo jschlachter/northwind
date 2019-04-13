@@ -1,6 +1,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
-using Northwind.Api.Models;
+using Northwind.Infrastructure.Data;
 
 namespace Northwind.Api.Test
 {

@@ -13,4 +13,9 @@
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\northwind.core\Northwind.Core.csproj" />
+    <ProjectReference Include="..\northwind.infrastructure\Northwind.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
