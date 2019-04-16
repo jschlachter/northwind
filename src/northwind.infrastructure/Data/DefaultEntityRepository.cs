@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -71,6 +72,25 @@ namespace Northwind.Infrastructure.Data
             await _context.SaveChangesAsync();
 
             return true;
+        }
+
+        public virtual async Task<IEnumerable<TEntity>> PageAsync(IQueryable<TEntity> entities, int pageSize, int pageNumber)
+        {
+            if (pageNumber >= 0)
+            {
+                return await entities.PageForward(pageSize, pageNumber).ToListAsync();
+            }
+
+            int numberOfEntities = await this.CountAsync(entities);
+
+            // may be negative
+            int virtualFirstIndex = numberOfEntities - pageSize * Math.Abs(pageNumber);
+            int numberOfElementsInPage = Math.Min(pageSize, virtualFirstIndex + pageSize);
+
+            return await entities
+                    .Skip(virtualFirstIndex)
+                    .Take(numberOfElementsInPage)
+                    .ToListAsync();
         }
 
         public virtual async Task<TEntity> UpdateAsync(TId id, TEntity entity)

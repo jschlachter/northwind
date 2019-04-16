@@ -14,7 +14,7 @@ namespace Northwind.Core.Entities
         [NotMapped]
         public string StringId
         {
-            get => throw new System.NotImplementedException();
+            get => GetStringId(Id);
             set => throw new System.NotImplementedException();
         }
 

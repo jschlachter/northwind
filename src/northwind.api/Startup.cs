@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Northwind.Api.Services;
 using Northwind.Core.Interfaces;
 using Northwind.Infrastructure.Data;
 
@@ -30,7 +31,11 @@ namespace Northwind.Api
 
             services.AddScoped<IDbContextResolver, DbContextResolver<NorthwindContext>>();
             services.AddScoped(typeof(IEntityRepository<>), typeof(DefaultEntityRepository<>));
+            services.AddScoped(typeof(IEntityRepository<,>), typeof(DefaultEntityRepository<,>));
+
             services.AddScoped<IOrderRepository, OrderRepository>();
+
+            services.AddTransient<IProductViewModelService, ProductViewModelService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,11 +5,11 @@ using Northwind.Core.Entities;
 namespace Northwind.Core.Interfaces
 {
     public interface IEntityRepository<TEntity>
-    : IEntityRepository<TEntity, int>, IEntityReadRepository<TEntity, int>
+    : IEntityRepository<TEntity, int>
     where TEntity: class, IIdentifiable<int>
     { }
 
-    public interface IEntityRepository<TEntity, in TId>
+    public interface IEntityRepository<TEntity,in TId>
     : IEntityReadRepository<TEntity, TId>
     where TEntity: class, IIdentifiable<TId>
     {

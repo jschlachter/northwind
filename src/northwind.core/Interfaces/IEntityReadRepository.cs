@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Northwind.Core.Entities;
@@ -16,5 +17,6 @@ namespace Northwind.Core.Interfaces
         IQueryable<TEntity> Get();
         Task<TEntity> GetAsync(TId id);
         Task<int> CountAsync(IQueryable<TEntity> entities);
+        Task<IEnumerable<TEntity>> PageAsync(IQueryable<TEntity> entities, int pageSize, int pageNumber);
     }
 }
