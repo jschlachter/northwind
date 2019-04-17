@@ -44,6 +44,7 @@ namespace Northwind.Infrastructure.Data.Configuration
                 sa.Property(p => p.City).HasColumnName("City");
                 sa.Property(p => p.Region).HasColumnName("Region");
                 sa.Property(p => p.PostalCode).HasColumnName("PostalCode");
+                sa.Property(p => p.Country).HasColumnName("Country");
             });
         }
     }

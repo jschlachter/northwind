@@ -7,7 +7,7 @@ namespace Northwind.Api.ViewModels
     {
         public IEnumerable<ProductViewModel> Products { get; set; }
         public IEnumerable<SelectListItem> Categories { get; set; }
-
+        public IEnumerable<SelectListItem> Suppliers { get; set; }
         public PaginationInfoViewModel PaginationInfo { get; set; }
     }
 }

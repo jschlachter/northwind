@@ -9,5 +9,6 @@ namespace Northwind.Api.Services
     {
         Task<ProductIndexViewModel> GetProducts(int pageSize, int pageNumber);
         Task<IEnumerable<SelectListItem>> GetCategories();
+        Task<IEnumerable<SelectListItem>> GetSuppliers();
     }
 }

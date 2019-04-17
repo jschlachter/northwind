@@ -13,14 +13,16 @@ namespace Northwind.Api.Services
     {
         IEntityRepository<Product, int> _productRepository;
         IEntityRepository<Category, int> _categoryRepository;
-
+        IEntityRepository<Supplier, int> _supplierRepository;
 
         public ProductViewModelService(
             IEntityRepository<Product, int> productRepository,
-            IEntityRepository<Category, int> categoryRepository)
+            IEntityRepository<Category, int> categoryRepository,
+            IEntityRepository<Supplier, int> supplierRepository)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
+            _supplierRepository = supplierRepository;
         }
 
         public async Task<IEnumerable<SelectListItem>> GetCategories()
@@ -34,6 +36,22 @@ namespace Northwind.Api.Services
             foreach(var category in categories)
             {
                 items.Add(new SelectListItem { Value=category.StringId,  Text=category.Name});
+            }
+
+            return items;
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetSuppliers()
+        {
+            var suppliers = await _supplierRepository.Get().ToListAsync();
+            var items = new List<SelectListItem>
+            {
+                new SelectListItem { Value=null, Text="All", Selected=true }
+            };
+
+            foreach(var supplier in suppliers)
+            {
+                items.Add(new SelectListItem { Value=supplier.StringId, Text=supplier.CompanyName});
             }
 
             return items;
@@ -56,6 +74,7 @@ namespace Northwind.Api.Services
                     UnitsInStock = i.UnitsInStock
                 }),
                 Categories = await GetCategories(),
+                Suppliers = await GetSuppliers(),
                 PaginationInfo = new PaginationInfoViewModel {
                     ItemsPerPage = page.Count(),
                     PageNumber = pageNumber,
