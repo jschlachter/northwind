@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\northwind.api\Northwind.Api.csproj" />
+    <ProjectReference Include="..\..\src\northwind.web\Northwind.Web.csproj" />
   </ItemGroup>
 
 </Project>
