@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8D2101AC-BE40-4BAD-8A27-378BB5A28CE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Api", "src\northwind.api\Northwind.Api.csproj", "{F0453BB4-1E17-47FF-AF90-6F8C02C3AFEC}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D558B11B-0F4E-4FAD-B156-54EFB7568B8F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Api.Test", "test\northwind.api.test\Northwind.Api.Test.csproj", "{DC670B88-013E-4125-93F3-709078B2EB74}"
@@ -14,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Core", "src\northwind.core\Northwind.Core.csproj", "{871F70CA-AB9A-4715-AC11-AD03E44FF95F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Infrastructure", "src\northwind.infrastructure\Northwind.Infrastructure.csproj", "{6C404AB0-A01E-48A0-8FFC-8BFBA5B46786}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Web", "src\northwind.web\Northwind.Web.csproj", "{1F59F39C-CB78-4FAB-91D4-84CA43C706EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,18 +28,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F0453BB4-1E17-47FF-AF90-6F8C02C3AFEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F0453BB4-1E17-47FF-AF90-6F8C02C3AFEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F0453BB4-1E17-47FF-AF90-6F8C02C3AFEC}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{F0453BB4-1E17-47FF-AF90-6F8C02C3AFEC}.Debug|x64.Build.0 = Debug|Any CPU
-		{F0453BB4-1E17-47FF-AF90-6F8C02C3AFEC}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{F0453BB4-1E17-47FF-AF90-6F8C02C3AFEC}.Debug|x86.Build.0 = Debug|Any CPU
-		{F0453BB4-1E17-47FF-AF90-6F8C02C3AFEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F0453BB4-1E17-47FF-AF90-6F8C02C3AFEC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F0453BB4-1E17-47FF-AF90-6F8C02C3AFEC}.Release|x64.ActiveCfg = Release|Any CPU
-		{F0453BB4-1E17-47FF-AF90-6F8C02C3AFEC}.Release|x64.Build.0 = Release|Any CPU
-		{F0453BB4-1E17-47FF-AF90-6F8C02C3AFEC}.Release|x86.ActiveCfg = Release|Any CPU
-		{F0453BB4-1E17-47FF-AF90-6F8C02C3AFEC}.Release|x86.Build.0 = Release|Any CPU
 		{DC670B88-013E-4125-93F3-709078B2EB74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DC670B88-013E-4125-93F3-709078B2EB74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC670B88-013E-4125-93F3-709078B2EB74}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -76,11 +64,23 @@ Global
 		{6C404AB0-A01E-48A0-8FFC-8BFBA5B46786}.Release|x64.Build.0 = Release|Any CPU
 		{6C404AB0-A01E-48A0-8FFC-8BFBA5B46786}.Release|x86.ActiveCfg = Release|Any CPU
 		{6C404AB0-A01E-48A0-8FFC-8BFBA5B46786}.Release|x86.Build.0 = Release|Any CPU
+		{1F59F39C-CB78-4FAB-91D4-84CA43C706EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F59F39C-CB78-4FAB-91D4-84CA43C706EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F59F39C-CB78-4FAB-91D4-84CA43C706EA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1F59F39C-CB78-4FAB-91D4-84CA43C706EA}.Debug|x64.Build.0 = Debug|Any CPU
+		{1F59F39C-CB78-4FAB-91D4-84CA43C706EA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1F59F39C-CB78-4FAB-91D4-84CA43C706EA}.Debug|x86.Build.0 = Debug|Any CPU
+		{1F59F39C-CB78-4FAB-91D4-84CA43C706EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F59F39C-CB78-4FAB-91D4-84CA43C706EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F59F39C-CB78-4FAB-91D4-84CA43C706EA}.Release|x64.ActiveCfg = Release|Any CPU
+		{1F59F39C-CB78-4FAB-91D4-84CA43C706EA}.Release|x64.Build.0 = Release|Any CPU
+		{1F59F39C-CB78-4FAB-91D4-84CA43C706EA}.Release|x86.ActiveCfg = Release|Any CPU
+		{1F59F39C-CB78-4FAB-91D4-84CA43C706EA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{F0453BB4-1E17-47FF-AF90-6F8C02C3AFEC} = {8D2101AC-BE40-4BAD-8A27-378BB5A28CE7}
 		{DC670B88-013E-4125-93F3-709078B2EB74} = {D558B11B-0F4E-4FAD-B156-54EFB7568B8F}
 		{871F70CA-AB9A-4715-AC11-AD03E44FF95F} = {8D2101AC-BE40-4BAD-8A27-378BB5A28CE7}
 		{6C404AB0-A01E-48A0-8FFC-8BFBA5B46786} = {8D2101AC-BE40-4BAD-8A27-378BB5A28CE7}
+		{1F59F39C-CB78-4FAB-91D4-84CA43C706EA} = {8D2101AC-BE40-4BAD-8A27-378BB5A28CE7}
 	EndGlobalSection
 EndGlobal
