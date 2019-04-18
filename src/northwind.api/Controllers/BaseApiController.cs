@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Northwind.Api.Controllers
 {
@@ -6,5 +7,13 @@ namespace Northwind.Api.Controllers
     [ApiController]
     public class BaseApiController : Controller
     {
+        readonly ILogger _logger;
+
+        public BaseApiController(ILogger logger)
+        {
+            _logger = logger;
+        }
+
+        public ILogger Logger => _logger;
     }
 }
