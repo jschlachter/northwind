@@ -15,14 +15,15 @@ namespace Northwind.Infrastructure.Data.Configuration
             //
             // Properties
             builder.Property(t => t.CustomerId).HasMaxLength(5);
-
+            builder.Property(t => t.ShipName).HasMaxLength(40);
             //
             // Table & Column Mappings
             builder.ToTable("Orders");
 
             builder.Property(t => t.Id).HasColumnName("OrderID");
             builder.Property(t => t.CustomerId).HasColumnName("CustomerID");
-
+            builder.Property(t => t.Freight).HasColumnName("Freight").HasColumnType("money");
+            builder.Property(t => t.ShipName).HasColumnName("ShipName");
             //
             // Relationships
             builder.HasOne(t => t.Shipper).WithMany().HasForeignKey("ShipVia");
