@@ -9,7 +9,7 @@ namespace Northwind.Core.Interfaces
     where TEntity: class, IIdentifiable<int>
     { }
 
-    public interface IEntityRepository<TEntity,in TId>
+    public interface IEntityRepository<TEntity,TId>
     : IEntityReadRepository<TEntity, TId>
     where TEntity: class, IIdentifiable<TId>
     {

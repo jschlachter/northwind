@@ -11,12 +11,13 @@ namespace Northwind.Core.Interfaces
     {
     }
 
-    public interface IEntityReadRepository<TEntity, in TId>
+    public interface IEntityReadRepository<TEntity, TId>
         where TEntity : class, IIdentifiable<TId>
     {
         IQueryable<TEntity> Get();
         Task<TEntity> GetAsync(TId id);
         Task<int> CountAsync(IQueryable<TEntity> entities);
         Task<IEnumerable<TEntity>> PageAsync(IQueryable<TEntity> entities, int pageSize, int pageNumber);
+        Task<IEnumerable<TEntity>> ListAsync(ISpecification<TEntity, TId> spec);
     }
 }

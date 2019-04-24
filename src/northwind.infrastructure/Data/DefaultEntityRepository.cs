@@ -112,5 +112,15 @@ namespace Northwind.Infrastructure.Data
             await _context.SaveChangesAsync();
             return oldEntity;
         }
+
+        private IQueryable<TEntity> ApplySpecification(ISpecification<TEntity, TId> spec)
+        {
+            return SpecificationEvaluator<TEntity, TId>.GetQuery(_dbSet, spec);
+        }
+
+        public async Task<IEnumerable<TEntity>> ListAsync(ISpecification<TEntity, TId> spec)
+        {
+            return await ApplySpecification(spec).ToListAsync();
+        }
     }
 }
