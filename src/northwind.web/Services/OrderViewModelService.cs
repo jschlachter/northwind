@@ -58,7 +58,7 @@ namespace Northwind.Web.Services
                 }),
                 PaginationInfo = new PaginationInfoViewModel{
                     ItemsPerPage = pageSize,
-                    PageNumber = pageNubmer,
+                    PageNumber = pageNumber,
                     TotalItems = totalItems
                 }
             };
