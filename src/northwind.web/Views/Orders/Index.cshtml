@@ -1,5 +1,30 @@
+@model OrderIndexViewModel
+
 @{
     ViewBag.Title = "Northwind :: Orders";
 }
 
 <h1>Orders</h1>
+
+<table class="table table-striped">
+    <thead>
+        <th>ID</th>
+        <th>Customer</th>
+        <th>Order Date</th>
+        <th>Shipped On</th>
+        <th>Street</th>
+        <th>Postal Code</th>
+    </thead>
+    <tbody>
+        @foreach(var order in Model.Orders) {
+            <tr>
+                <td>@order.OrderNumber</td>
+                <td><!-- CustomerName --></td>
+                <td>@order.OrderDate</td>
+                <td>@order.ShippedDate</td>
+                <td>@order.ShippingAddress.Street1</td>
+                <td>@order.ShippingAddress.PostalCode</td>
+            </tr>
+        }
+    </tbody>
+</table>

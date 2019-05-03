@@ -18,7 +18,7 @@ namespace Northwind.Web.Services
 
 
         public OrderViewModelService(
-            IEntityRepository<Order> orderRepository,
+            IEntityRepository<Order, int> orderRepository,
             IEntityRepository<Customer, string> customerRepository)
         {
             _orderRepository = orderRepository;

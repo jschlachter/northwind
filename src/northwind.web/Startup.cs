@@ -47,10 +47,10 @@ namespace Northwind.Web
             services.AddScoped<IDbContextResolver, DbContextResolver<NorthwindContext>>();
             services.AddScoped(typeof(IEntityRepository<>), typeof(DefaultEntityRepository<>));
             services.AddScoped(typeof(IEntityRepository<,>), typeof(DefaultEntityRepository<,>));
-
             services.AddScoped<IOrderRepository, OrderRepository>();
 
             services.AddTransient<IProductViewModelService, ProductViewModelService>();
+            services.AddTransient<IOrderViewModelService, OrderViewModelService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

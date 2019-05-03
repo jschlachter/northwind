@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Northwind.Web.Services;
@@ -17,9 +18,9 @@ namespace Northwind.Web.Controllers
             _orderViewModelService = orderViewModelService;
         }
 
-        public ActionResult<OrderIndexViewModel> Index(int pageNumber=1, int pageSize=100)
+        public async Task<ActionResult<OrderIndexViewModel>> Index(int pageNumber=1, int pageSize=100)
         {
-            var orders = _orderViewModelService.GetOrders(pageSize, pageNumber);
+            var orders = await _orderViewModelService.GetOrders(pageSize, pageNumber);
 
             return View(orders);
         }
