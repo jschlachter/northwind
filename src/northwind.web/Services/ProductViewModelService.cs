@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Northwind.Web.ViewModels;
 using Northwind.Core.Entities;
 using Northwind.Core.Interfaces;
+using Northwind.Core.Specifications;
 
 namespace Northwind.Web.Services
 {
@@ -59,9 +60,9 @@ namespace Northwind.Web.Services
 
         public async Task<ProductIndexViewModel> GetProducts(int pageSize, int pageNumber)
         {
-            var products = _productRepository.Get();
-            var page = await _productRepository.PageAsync(products, pageSize, pageNumber);
-            var totalItems = await _productRepository.CountAsync(products);
+            var filter = new ProductFilterPaginatedSpecification(pageSize * pageNumber, pageSize, null, null);
+            var page = await _productRepository.ListAsync(filter);
+            var totalItems = await _productRepository.CountAsync(new ProductFilterSpecification());
 
             var vm = new ProductIndexViewModel
             {

@@ -16,8 +16,7 @@ namespace Northwind.Core.Interfaces
     {
         IQueryable<TEntity> Get();
         Task<TEntity> GetAsync(TId id);
-        Task<int> CountAsync(IQueryable<TEntity> entities);
-        Task<IEnumerable<TEntity>> PageAsync(IQueryable<TEntity> entities, int pageSize, int pageNumber);
+        Task<int> CountAsync(ISpecification<TEntity, TId> spec);
         Task<IEnumerable<TEntity>> ListAsync(ISpecification<TEntity, TId> spec);
     }
 }

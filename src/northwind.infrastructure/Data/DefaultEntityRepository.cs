@@ -55,11 +55,9 @@ namespace Northwind.Infrastructure.Data
             return await Get().SingleOrDefaultAsync(e=>e.Id.Equals(id));
         }
 
-        public virtual async Task<int> CountAsync(IQueryable<TEntity> entities)
+        public virtual async Task<int> CountAsync(ISpecification<TEntity, TId> spec)
         {
-            return (entities is IAsyncEnumerable<TEntity>)
-                 ? await entities.CountAsync()
-                 : entities.Count();
+            return await ApplySpecification(spec).CountAsync();
         }
 
         public virtual async Task<bool> DeleteAsync(TId id)
@@ -74,24 +72,24 @@ namespace Northwind.Infrastructure.Data
             return true;
         }
 
-        public virtual async Task<IEnumerable<TEntity>> PageAsync(IQueryable<TEntity> entities, int pageSize, int pageNumber)
-        {
-            if (pageNumber >= 0)
-            {
-                return await entities.PageForward(pageSize, pageNumber).ToListAsync();
-            }
+        // public virtual async Task<IEnumerable<TEntity>> PageAsync(IQueryable<TEntity> entities, int pageSize, int pageNumber)
+        // {
+        //     if (pageNumber >= 0)
+        //     {
+        //         return await entities.PageForward(pageSize, pageNumber).ToListAsync();
+        //     }
 
-            int numberOfEntities = await this.CountAsync(entities);
+        //     int numberOfEntities = await this.CountAsync(entities);
 
-            // may be negative
-            int virtualFirstIndex = numberOfEntities - pageSize * Math.Abs(pageNumber);
-            int numberOfElementsInPage = Math.Min(pageSize, virtualFirstIndex + pageSize);
+        //     // may be negative
+        //     int virtualFirstIndex = numberOfEntities - pageSize * Math.Abs(pageNumber);
+        //     int numberOfElementsInPage = Math.Min(pageSize, virtualFirstIndex + pageSize);
 
-            return await entities
-                    .Skip(virtualFirstIndex)
-                    .Take(numberOfElementsInPage)
-                    .ToListAsync();
-        }
+        //     return await entities
+        //             .Skip(virtualFirstIndex)
+        //             .Take(numberOfElementsInPage)
+        //             .ToListAsync();
+        // }
 
         public virtual async Task<TEntity> UpdateAsync(TId id, TEntity entity)
         {

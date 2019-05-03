@@ -31,10 +31,10 @@ namespace Northwind.Infrastructure.Data
             modelBuilder.ApplyConfiguration(new RegionConfiguration());
             modelBuilder.ApplyConfiguration(new SupplierConfiguration());
             modelBuilder.ApplyConfiguration(new ShipperConfiguration());
-
             //
             // Global filter for discontinued products
             // modelBuilder.Entity<Product>().HasQueryFilter(p => !p.Discontinued);
         }
     }
 }
+

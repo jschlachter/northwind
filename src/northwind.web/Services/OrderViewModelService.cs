@@ -47,7 +47,8 @@ namespace Northwind.Web.Services
             var filterPaginated = new OrderFilterPaginatedSpecification(pageSize * pageNumber, pageSize, null);
             var orders = await _orderRepository.ListAsync(filterPaginated);
 
-            var totalItems = 10; // _orderRepository.CountAsync(filter);
+            var totalItems = await _orderRepository.CountAsync(filter);
+
             var vm = new OrderIndexViewModel
             {
                 Orders = orders.Select(o => new OrderViewModel{

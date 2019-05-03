@@ -31,8 +31,9 @@
             "type": "process",
             "args": [
                 "watch",
-                "run",
-                "${workspaceFolder}/src/northwind.web/Northwind.Web.csproj"
+                "--project",
+                "${workspaceFolder}/src/northwind.web/Northwind.Web.csproj",
+                "run"
             ],
             "problemMatcher": "$tsc"
         }
