@@ -37,7 +37,7 @@ namespace Northwind.Core.Specifications
 
         public bool isPagingEnabled { get; private set; } = false;
 
-                protected virtual void AddInclude(Expression<Func<T, object>> includeExpression)
+        protected virtual void AddInclude(Expression<Func<T, object>> includeExpression)
         {
             Includes.Add(includeExpression);
         }

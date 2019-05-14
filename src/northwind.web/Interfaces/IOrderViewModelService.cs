@@ -8,7 +8,7 @@ namespace Northwind.Web.Services
 {
     public interface IOrderViewModelService
     {
-        Task<OrderIndexViewModel> GetOrders(int pageSize, int pageNubmer);
+        Task<OrderIndexViewModel> GetOrders(int pageSize, int pageNumber);
         Task<IEnumerable<SelectListItem>> GetCustomers();
     }
 }

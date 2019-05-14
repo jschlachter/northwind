@@ -18,10 +18,9 @@ namespace Northwind.Web.Controllers
             _orderViewModelService = orderViewModelService;
         }
 
-        public async Task<ActionResult<OrderIndexViewModel>> Index(int pageNumber=1, int pageSize=100)
+        public async Task<ActionResult<OrderIndexViewModel>> Index()
         {
-            var orders = await _orderViewModelService.GetOrders(pageSize, pageNumber);
-
+            var orders = await _orderViewModelService.GetOrders(10, 0);
             return View(orders);
         }
     }
