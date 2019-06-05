@@ -20,8 +20,16 @@ namespace Northwind.Web.Controllers
 
         public async Task<ActionResult<OrderIndexViewModel>> Index()
         {
+            var accept =  HttpContext.Request.Headers["Accept"];
             var orders = await _orderViewModelService.GetOrders(10, 0);
-            return View(orders);
+
+            switch(accept.ToString())
+            {
+                case "application/json":
+                    return Json(orders);
+                default:
+                    return View(orders);
+            }
         }
     }
 }

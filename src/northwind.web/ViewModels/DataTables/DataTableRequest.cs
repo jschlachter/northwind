@@ -24,7 +24,7 @@ namespace Northwind.Web.ViewModels.DataTables
 		/// unless the server has fewer records to return. Note that this can be -1 to
 		/// indicate that all records should be returned.
 		/// </summary>
-		public int Length { get; set; }
+		public int Length { get; set; } = 100;
 
 		public SearchCriterion GlobalSearch { get; set; }
 

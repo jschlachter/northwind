@@ -10,7 +10,7 @@
             $('table#my-orders').DataTable({
                 "serverSide": true,
                 "ajax": {
-                    "url":"~/Orders",
+                    "url":"@Url.Action("index", "orders")",
                     "contentType":"application/json",
                     "type": "POST",
                     "data": function(d) {

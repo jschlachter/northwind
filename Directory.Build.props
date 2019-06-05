@@ -2,8 +2,8 @@
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(IsUnitTestProject)' == ''">
-    <IsUnitTestProject Condition="$(MSBuildProjectName.EndsWith('.test'))">True</IsUnitTestProject>
-    <!-- <IsUnitTestProject Condition="$(MSBuildProjectName.EndsWith('.Specification.Tests'))">False</IsUnitTestProject> -->
+  <PropertyGroup Condition="'$(IsTestProject)' == ''">
+    <IsTestProject>false</IsTestProject>
+    <IsTestProject Condition="$(MSBuildProjectName.EndsWith('.Test'))">true</IsTestProject>
   </PropertyGroup>
 </Project>
